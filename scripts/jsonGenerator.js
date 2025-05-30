@@ -60,7 +60,7 @@ try {
   );
 
   // merger json files for search
-  const posts = require(`../${JSON_FOLDER}/posts.json`);
+  const posts = JSON.parse(fs.readFileSync(`${JSON_FOLDER}/posts.json`, 'utf-8'));
   const search = [...posts];
   fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
 } catch (err) {
