@@ -1,0 +1,26 @@
+---
+const { pathname } = Astro.url;
+const isWelsh = pathname.startsWith('/cy');
+const englishLink = pathname.replace(/^\/cy/, '') || '/';
+const welshLink = '/cy' + pathname;
+---
+<nav class="language-switcher">
+  <a href={englishLink} class:is-active={!isWelsh}>English</a>
+  <span> / </span>
+  <a href={welshLink} class:is-active={isWelsh}>Cymraeg</a>
+</nav>
+
+<style>
+.language-switcher {
+  text-align: right;
+  font-size: 0.9rem;
+}
+.language-switcher a {
+  text-decoration: none;
+  padding: 0.25rem;
+}
+.language-switcher a.is-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+</style>
