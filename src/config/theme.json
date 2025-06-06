@@ -2,43 +2,43 @@
   "colors": {
     "default": {
       "theme_color": {
-        "primary": "#121212",
-        "body": "#fff",
-        "border": "#eaeaea",
-        "theme_light": "#f6f6f6",
-        "theme_dark": ""
+        "primary": "#7C5E3C",
+        "body": "#fdfaf6",
+        "border": "#d6c9b8",
+        "theme_light": "#f4eee8",
+        "theme_dark": "#eee1d4"
       },
       "text_color": {
-        "default": "#444444",
-        "dark": "#040404",
-        "light": "#717171"
+        "default": "#3e2e1e",
+        "dark": "#1a120b",
+        "light": "#74675b"
       }
     },
     "darkmode": {
       "theme_color": {
-        "primary": "#fff",
-        "body": "#1c1c1c",
-        "border": "#3E3E3E",
-        "theme_light": "#222222",
-        "theme_dark": ""
+        "primary": "#e6d2b5",
+        "body": "#1e1b16",
+        "border": "#4c4336",
+        "theme_light": "#2a261f",
+        "theme_dark": "#181511"
       },
       "text_color": {
-        "default": "#B4AFB6",
-        "dark": "#fff",
-        "light": "#B4AFB6"
+        "default": "#d7cfc3",
+        "dark": "#ffffff",
+        "light": "#9f9486"
       }
     }
   },
   "fonts": {
     "font_family": {
-      "primary": "Heebo Variable",
+      "primary": "Signika Variable",
       "primary_type": "sans-serif",
-      "secondary": "Signika Variable",
-      "secondary_type": "sans-serif"
+      "secondary": "EB Garamond",
+      "secondary_type": "serif"
     },
     "font_size": {
-      "base": "16",
-      "scale": "1.250"
+      "base": "17",
+      "scale": "1.25"
     }
   }
 }
