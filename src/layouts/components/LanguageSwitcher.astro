@@ -4,11 +4,11 @@ const isWelsh = pathname.startsWith('/cy');
 const englishLink = pathname.replace(/^\/cy/, '') || '/';
 const welshLink = '/cy' + pathname;
 ---
-<nav class="language-switcher">
+<div class="language-switcher">
   <a href={englishLink} class:is-active={!isWelsh}>English</a>
   <span> / </span>
   <a href={welshLink} class:is-active={isWelsh}>Cymraeg</a>
-</nav>
+</div>
 
 <style>
 .language-switcher {
