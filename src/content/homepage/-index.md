@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "Carpentry and Crafts for All"
-  content: "Learn how to build anf fix."
+  content: "Learn how to build and fix."
   image: "/images/banner.png"
   button:
     enable: false
