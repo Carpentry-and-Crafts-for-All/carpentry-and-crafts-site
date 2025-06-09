@@ -3,23 +3,41 @@ import { humanize } from "@/lib/utils/textConverter";
 
 const { className }: { className?: string } = Astro.props;
 
-const paths = Astro.url.pathname.split("/").filter((x) => x);
+// Split and filter the path
+const fullPaths = Astro.url.pathname.split("/").filter(Boolean);
+
+// Get the language and remove it from the paths used for breadcrumbs
+const lang = fullPaths[0] === "cy" ? "cy" : "en";
+const paths = fullPaths.slice(1); // remove 'en' or 'cy'
+
+// Localized home label and href
+const homeLabel = lang === "cy" ? "Hafan" : "Home";
+const homeHref = `/${lang}`;
+
+// Optional: localized slugs
+const labelMap: Record<string, { en: string; cy: string }> = {
+  contact: { en: "Contact", cy: "Cysylltu" },
+  gallery: { en: "Gallery", cy: "Oriel" },
+  // add more as needed
+};
+
+// Build breadcrumb parts
 let parts = [
   {
-    label: "Home",
-    href: "/",
-    "aria-label": Astro.url.pathname === "/" ? "page" : undefined,
+    label: homeLabel,
+    href: homeHref,
+    "aria-label": paths.length === 0 ? "page" : undefined,
   },
 ];
 
-paths.forEach((label: string, i: number) => {
-  const href = `/${paths.slice(0, i + 1).join("/")}`;
-  label !== "page" &&
-    parts.push({
-      label: humanize(label.replace(".html", "").replace(/[-_]/g, " ")) || "",
-      href,
-      "aria-label": Astro.url.pathname === href ? "page" : undefined,
-    });
+paths.forEach((slug: string, i: number) => {
+  const href = `/${lang}/${paths.slice(0, i + 1).join("/")}`;
+  const label = labelMap[slug]?.[lang] ?? humanize(slug.replace(".html", "").replace(/[-_]/g, " "));
+  parts.push({
+    label,
+    href,
+    "aria-label": Astro.url.pathname === href ? "page" : undefined,
+  });
 });
 ---
 
@@ -28,7 +46,7 @@ paths.forEach((label: string, i: number) => {
     {
       parts.map(({ label, ...attrs }, index) => (
         <li class="mx-1 capitalize" role="listitem">
-          {index > 0 && <span class="inlin-block mr-1">/</span>}
+          {index > 0 && <span class="inline-block mr-1">/</span>}
           {index !== parts.length - 1 ? (
             <a class="text-primary dark:text-darkmode-primary" {...attrs}>
               {label}
