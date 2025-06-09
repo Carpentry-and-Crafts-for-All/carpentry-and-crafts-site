@@ -1,6 +1,16 @@
----
-const acceptedLanguages = Astro.request.headers.get("accept-language") || "";
-const isWelsh = acceptedLanguages.toLowerCase().includes("cy");
-
-Astro.redirect(isWelsh ? '/cy/' : '/en/');
----
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      const lang = navigator.language || navigator.userLanguage;
+      const isWelsh = lang.toLowerCase().startsWith('cy');
+      const target = isWelsh ? '/cy' : '/en';
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
