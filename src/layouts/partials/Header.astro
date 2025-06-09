@@ -130,6 +130,7 @@ const { pathname } = Astro.url;
         )
       }
       <ThemeSwitcher className="mr-5" />
+      <LanguageSwitcher />
       {
         navigation_button.enable && (
           <a
@@ -141,6 +142,5 @@ const { pathname } = Astro.url;
         )
       }
     </div>
-    <LanguageSwitcher />
   </nav>
 </header>

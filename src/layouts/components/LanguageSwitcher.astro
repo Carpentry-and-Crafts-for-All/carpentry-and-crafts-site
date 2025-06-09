@@ -1,13 +1,14 @@
 ---
+// LanguageSwitcher.astro
 const { pathname } = Astro.url;
 const isWelsh = pathname.startsWith('/cy');
 const englishLink = pathname.replace(/^\/cy/, '') || '/';
-const welshLink = '/cy' + pathname;
+const welshLink = pathname === '/' ? '/cy' : `/cy${pathname.replace(/^\/cy/, '')}`;
 ---
-<div class="language-switcher">
-  <a href={englishLink} class:is-active={!isWelsh}>English</a>
+<div class="language-switcher flex gap-2 text-sm text-dark dark:text-white">
+  <a href={englishLink} class:list={['lang-link', { 'is-active': !isWelsh }]}>English</a>
   <span> / </span>
-  <a href={welshLink} class:is-active={isWelsh}>Cymraeg</a>
+  <a href={welshLink} class:list={['lang-link', { 'is-active': isWelsh }]}>Cymraeg</a>
 </div>
 
 <style>
@@ -22,5 +23,7 @@ const welshLink = '/cy' + pathname;
 .language-switcher a.is-active {
   font-weight: bold;
   text-decoration: underline;
+  pointer-events: none;
+  opacity: 0.6;
 }
 </style>
