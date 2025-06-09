@@ -18,11 +18,10 @@ export interface NavigationLink {
   children?: ChildNavigationLink[];
 }
 
-const { main }: { main: NavigationLink[] } = menu;
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
 const lang = pathname.startsWith('/cy') ? 'cy' : 'en';
-const langPrefix = `/${lang}`;
+const { main }: { main: NavigationLink[] } = menu[lang];
 ---
 
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>

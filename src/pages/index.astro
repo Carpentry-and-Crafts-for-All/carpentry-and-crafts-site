@@ -4,7 +4,7 @@
     <title>Redirecting...</title>
     <meta name="robots" content="noindex" />
     <script>
-      const lang = navigator.language || navigator.userLanguage;
+      const lang = navigator.language;
       const isWelsh = lang.toLowerCase().startsWith('cy');
       const target = isWelsh ? '/cy' : '/en';
       window.location.replace(target);

@@ -1,18 +1,18 @@
 {
-  "main": [
-    {
-      "name": "Home",
-      "url": "/"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    {
-      "name": "Gallery",
-      "url": "/gallery"
-    }
-  ],
+  "en": {
+    "main": [
+      { "name": "Home", "url": "/en" },
+      { "name": "Contact", "url": "/en/contact" },
+      { "name": "Gallery", "url": "/en/gallery" }
+    ]
+  },
+  "cy": {
+    "main": [
+      { "name": "Hafan", "url": "/cy" },
+      { "name": "Cysylltu", "url": "/cy/cysylltu" },
+      { "name": "Oriel", "url": "/cy/oriel" }
+    ]
+  },
   "footer": [
 
   ]
