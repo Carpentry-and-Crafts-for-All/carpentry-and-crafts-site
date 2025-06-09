@@ -2,17 +2,25 @@
 const { pathname } = Astro.url;
 const isWelsh = pathname.startsWith('/cy');
 
+// Normalize pathname by removing trailing slash (optional)
+const cleanPath = pathname.replace(/\/$/, '');
+
+// Map of English <-> Welsh routes
 const pathMap: Record<string, string> = {
-  '/en/': '/cy/',
+  '/en': '/cy',
   '/en/contact': '/cy/cysylltu',
   '/en/gallery': '/cy/oriel',
-  '/cy/': '/en/',
+  '/cy': '/en',
   '/cy/cysylltu': '/en/contact',
   '/cy/oriel': '/en/gallery',
 };
 
-const englishPath = pathMap[pathname] || '/en/';
-const welshPath = pathMap[pathname] ? pathname : '/cy/';
+// Look up the opposite path
+const oppositePath = pathMap[cleanPath];
+
+// Determine final links
+const englishPath = isWelsh ? oppositePath || '/en' : pathname;
+const welshPath = !isWelsh ? oppositePath || '/cy' : pathname;
 ---
 <div class="language-switcher">
   <a href={englishPath} class:list={['lang-link', { 'is-active': !isWelsh }]}>English</a>
