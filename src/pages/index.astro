@@ -1,0 +1,6 @@
+---
+const acceptedLanguages = Astro.request.headers.get("accept-language") || "";
+const isWelsh = acceptedLanguages.toLowerCase().includes("cy");
+
+Astro.redirect(isWelsh ? '/cy/' : '/en/');
+---
