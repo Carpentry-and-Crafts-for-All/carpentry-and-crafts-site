@@ -2,44 +2,50 @@
 import {
   getLangFromPath,
   getLocalisedHomePath,
-} from "@/lib/utils/lang";
+} from '@/lib/utils/lang';
 
 const { pathname } = Astro.url;
 const currentLang = getLangFromPath(pathname);
-const otherLang = currentLang === "cy" ? "en" : "cy";
 
 const pathMap: Record<string, string> = {
-  "/en": "/cy",
-  "/en/contact": "/cy/cysylltu",
-  "/en/gallery": "/cy/oriel",
-  "/cy": "/en",
-  "/cy/cysylltu": "/en/contact",
-  "/cy/oriel": "/en/gallery",
+  '/en': '/cy',
+  '/en/contact': '/cy/cysylltu',
+  '/en/gallery': '/cy/oriel',
+  '/cy': '/en',
+  '/cy/cysylltu': '/en/contact',
+  '/cy/oriel': '/en/gallery',
 };
 
-const cleanPath = pathname.replace(/\/$/, "");
+const cleanPath = pathname.replace(/\/$/, '');
 const oppositePath = pathMap[cleanPath];
 
-const englishPath = currentLang === "cy" ? oppositePath || "/en" : pathname;
-const welshPath = currentLang === "en" ? oppositePath || "/cy" : pathname;
+const englishPath = currentLang === 'cy' ? oppositePath || '/en' : pathname;
+const welshPath = currentLang === 'en' ? oppositePath || '/cy' : pathname;
+
+const linkSpanClasses = 'no-underline hover:underline transition-all';
+const activeClasses = 'font-bold underline pointer-events-none opacity-60';
 ---
 
-<div class="text-right text-sm whitespace-nowrap mr-5 lg:mr-0">
-  <a
-    href={englishPath}
-    class="px-1 no-underline hover:underline transition-all"
-    class:list={{ "font-bold underline pointer-events-none opacity-60": currentLang === "en" }}
-  >
-    <span class="inline sm:hidden">Eng</span>
-    <span class="hidden sm:inline">English</span>
+<div class='text-right text-sm whitespace-nowrap mr-5 lg:mr-0'>
+  <a href={englishPath}>
+    <span
+      class={`${linkSpanClasses} inline sm:hidden`}
+      class:list={{ [activeClasses]: currentLang === 'en' }}
+    >Eng</span>
+    <span
+      class={`${linkSpanClasses} hidden sm:inline`}
+      class:list={{ [activeClasses]: currentLang === 'en' }}
+    >English</span>
   </a>
   <span>/</span>
-  <a
-    href={welshPath}
-    class="px-1 no-underline hover:underline transition-all"
-    class:list={{ "font-bold underline pointer-events-none opacity-60": currentLang === "cy" }}
-  >
-    <span class="inline sm:hidden">Cym</span>
-    <span class="hidden sm:inline">Cymraeg</span>
+  <a href={welshPath}>
+    <span
+      class={`${linkSpanClasses} inline sm:hidden`}
+      class:list={{ [activeClasses]: currentLang === 'cy' }}
+    >Cym</span>
+    <span
+      class={`${linkSpanClasses} hidden sm:inline`}
+      class:list={{ [activeClasses]: currentLang === 'cy' }}
+    >Cymraeg</span>
   </a>
 </div>
