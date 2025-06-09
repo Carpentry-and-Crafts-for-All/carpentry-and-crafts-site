@@ -1,6 +1,10 @@
 ---
 import config from "@/config/config.json";
 import ImageMod from "./ImageMod.astro";
+import { getLangFromPath } from "@/lib/utils/lang";
+
+const lang = getLangFromPath(Astro.url.pathname);
+const homeLink = `/${lang}`;
 
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;
@@ -23,7 +27,7 @@ const {
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 ---
 
-<a href="/" class="navbar-brand inline-block">
+<a href={homeLink} class="navbar-brand inline-block">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>
