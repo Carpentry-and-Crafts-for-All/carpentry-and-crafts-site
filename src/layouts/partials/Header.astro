@@ -5,6 +5,7 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import { IoSearch } from "react-icons/io5";
 import LanguageSwitcher from '@/components/LanguageSwitcher.astro';
+import { getLangFromPath } from "@/lib/utils/lang";
 
 export interface ChildNavigationLink {
   name: string;
@@ -20,7 +21,7 @@ export interface NavigationLink {
 
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
-const lang = pathname.startsWith('/cy') ? 'cy' : 'en';
+const lang = getLangFromPath(pathname);
 const { main }: { main: NavigationLink[] } = menu[lang];
 ---
 
