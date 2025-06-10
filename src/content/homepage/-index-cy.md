@@ -1,8 +1,8 @@
 ---
 # Banner
 banner:
-  title: "Gwaith Saer a Chrefftau i Bawb"
-  content: "Dysgwch sut i adeiladu a thrwsio."
+  title: "Meithrin Sgiliau. Meithrin Hyder."
+  content: "Rydym yn elusen sy'n cynnig gweithdai gwaith saer a chrefft i helpu pobl i ennill sgiliau ymarferol, rhoi hwb i'w hyder, a chysylltu ag eraill mewn lle cefnogol."
   image: "/images/banner.png"
   button:
     enable: false
@@ -11,43 +11,27 @@ banner:
 
 # Features
 features:
-  - title: "What's Included in Astroplate"
+  - title: "Gweithdai Gwaith Saer a Chrefft"
     image: "/images/service-1.png"
-    content: "Astroplate is a comprehensive starter template that includes everything you need to get started with your Astro project. What's Included in Astroplate"
+    content: "Rydym yn darparu gweithdai ymarferol i oedolion sydd eisiau dysgu sgiliau ymarferol mewn amgylchedd cyfeillgar a chynhwysol."
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Astro and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
+      - "Ar agor i bob lefel sgiliau"
+      - "Darperir yr holl ddeunyddiau ac offer"
+      - "Cyflymder dysgu cefnogol a hamddenol"
     button:
       enable: false
       label: "Get Started Now"
       link: "#"
 
-  - title: "Discover the Key Features Of Astro"
+  - title: "Mwy na Gwneud Pethau yn Unig"
     image: "/images/service-2.png"
-    content: "Astro is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
+    content: "Rydym yn credu bod dysgu sgiliau ymarferol yn ymwneud â mwy na dim ond yr hyn rydych chi'n ei wneud—mae hefyd yn ymwneud â chysylltiad, hyder a lles."
     bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+      - "Cwrdd â phobl newydd yn eich cymuned"
+      - "Meithrin hyder trwy greu"
+      - "Mwynhewch ymdeimlad o gyflawniad"
     button:
       enable: true
-      label: "Get Started Now"
-      link: "https://github.com/zeon-studio/astroplate"
-
-  - title: "The Top Reasons to Choose Astro for Your Next Project"
-    image: "/images/service-3.png"
-    content: "With Astro, you can build modern and content-focused websites without sacrificing performance or ease of use."
-    bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Astro a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
-    button:
-      enable: false
-      label: ""
-      link: ""
+      label: "Cysylltwch â Ni"
+      link: "/cyswlltu"
 ---

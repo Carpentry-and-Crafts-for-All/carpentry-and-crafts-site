@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "Build Skills. Build Confidence."
-  content: "We’re a charity offering free carpentry and craft workshops to help people gain practical skills, boost their confidence, and connect with others in a supportive space."
+  content: "We’re a charity offering carpentry and craft workshops to help people gain practical skills, boost their confidence, and connect with others in a supportive space."
   image: "/images/banner.png"
   button:
     enable: false
