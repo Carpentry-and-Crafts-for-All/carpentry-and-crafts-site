@@ -31,7 +31,7 @@ features:
       - "Meithrin hyder trwy greu"
       - "Mwynhewch ymdeimlad o gyflawniad"
     button:
-      enable: true
+      enable: false
       label: "Cysylltwch â Ni"
-      link: "/cyswlltu"
+      link: "/cy/cysylltu"
 ---

@@ -31,8 +31,8 @@ features:
       - "Build confidence through making"
       - "Enjoy a sense of achievement"
     button:
-      enable: true
+      enable: false
       label: "Contact Us"
-      link: "/contact"
+      link: "en/contact"
 
 ---
