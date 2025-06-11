@@ -22,12 +22,12 @@ const oppositePath = pathMap[cleanPath];
 const englishPath = currentLang === 'cy' ? oppositePath || '/en' : pathname;
 const welshPath = currentLang === 'en' ? oppositePath || '/cy' : pathname;
 
-const linkSpanClasses = 'no-underline hover:underline transition-all';
-const activeClasses = 'font-bold underline pointer-events-none opacity-60';
+const linkSpanClasses = 'no-underline transition-all';
+const activeClasses = 'font-bold pointer-events-none opacity-60';
 ---
 
 <div class='text-right text-sm whitespace-nowrap mr-5 lg:mr-0'>
-  <a href={englishPath}>
+  <a href={englishPath} class="nav-link p-0 inline">
     <span
       class={`${linkSpanClasses} inline sm:hidden`}
       class:list={{ [activeClasses]: currentLang === 'en' }}
@@ -38,7 +38,7 @@ const activeClasses = 'font-bold underline pointer-events-none opacity-60';
     >English</span>
   </a>
   <span>/</span>
-  <a href={welshPath}>
+  <a href={welshPath} class="nav-link p-0 inline">
     <span
       class={`${linkSpanClasses} inline sm:hidden`}
       class:list={{ [activeClasses]: currentLang === 'cy' }}
