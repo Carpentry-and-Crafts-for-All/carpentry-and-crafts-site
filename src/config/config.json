@@ -24,7 +24,8 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "© 2025 Carpentry and Crafts for All. Registered Charity No. 1212202."
+    "copyright": "© 2025 Carpentry and Crafts for All. Registered Charity No. 1212202.",
+    "copyright_cy": "© 2025 Gwaith Saer a Chrefft i Bawb. Elusen Gofrestredig Rhif 1212202."
   },
 
   "navigation_button": {

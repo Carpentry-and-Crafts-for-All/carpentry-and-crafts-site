@@ -5,6 +5,11 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
+import { getLangFromPath } from "@/lib/utils/lang";
+
+const { pathname } = Astro.url;
+const currentLang = getLangFromPath(pathname);
+const copyrightNotice = currentLang === 'cy' ? markdownify(config.params.copyright_cy) : markdownify(config.params.copyright);
 
 const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
@@ -12,7 +17,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
 <footer class="bg-theme-light dark:bg-darkmode-theme-light">
   <div class="border-t border-border py-7 dark:border-darkmode-border">
     <div class="container text-center text-light dark:text-darkmode-light">
-      <p set:html={markdownify(config.params.copyright)} />
+      <p set:html={copyrightNotice} />
     </div>
   </div>
 </footer>
