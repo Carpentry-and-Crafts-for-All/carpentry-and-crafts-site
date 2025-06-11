@@ -2,6 +2,7 @@
 import config from "@/config/config.json";
 import ImageMod from "./ImageMod.astro";
 import { getLangFromPath } from "@/lib/utils/lang";
+import { string } from "astro:schema";
 
 const lang = getLangFromPath(Astro.url.pathname);
 const homeLink = `/${lang}`;
@@ -15,6 +16,9 @@ const {
   logo_height,
   logo_text,
   title,
+  logo_alt_home_link,
+  logo_alt_home_link_cy,
+  logo_alt,
 }: {
   logo: string;
   logo_darkmode: string;
@@ -22,9 +26,13 @@ const {
   logo_height: any;
   logo_text: string;
   title: string;
+  logo_alt_home_link: string;
+  logo_alt_home_link_cy: string;
+  logo_alt: string;
 } = config.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+const logoAltAsHomeLink = homeLink != 'cy' ? logo_alt_home_link : logo_alt_home_link_cy;
 ---
 
 <a href={homeLink} class="navbar-brand inline-block">
@@ -36,7 +44,7 @@ const { theme_switcher }: { theme_switcher: boolean } = config.settings;
           class={`inline-block ${theme_switcher && "dark:hidden"}`}
           width={logo_width.replace("px", "") * 2}
           height={logo_height.replace("px", "") * 2}
-          alt={title}
+          alt={logoAltAsHomeLink}
           style={{
             height: logo_height.replace("px", "") + "px",
             width: logo_width.replace("px", "") + "px",

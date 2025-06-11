@@ -9,7 +9,10 @@
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "100",
     "logo_height": "100",
-    "logo_text": "Carpentry and Crafts for All"
+    "logo_text": "Carpentry and Crafts for All",
+    "logo_alt_home_link": "Home",
+    "logo_alt_home_link_cy": "Hafan",
+    "logo_alt": "Gwaith Saer a Chrefftau i Bawb C.C.F.A. Carpentry and Crafts for All"
   },
 
   "settings": {
@@ -42,7 +45,7 @@
 
   "metadata": {
     "meta_author": "Carpentry and Crafts for All",
-    "meta_image": "/images/logo.png",
+    "meta_image": "/images/logo-social-share.png",
     "meta_description": "We’re a charity offering carpentry and craft workshops to help people gain practical skills, boost their confidence, and connect with others in a supportive space."
   }
 }
