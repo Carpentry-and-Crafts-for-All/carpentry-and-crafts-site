@@ -39,6 +39,10 @@ input#nav-toggle:checked ~ #nav-menu {
   @apply text-dark hover:text-primary dark:text-darkmode-dark dark:hover:text-darkmode-primary block p-3 font-semibold transition lg:px-2 lg:py-3;
 }
 
+.nav-link.active {
+  @apply border-solid border-b-4 rounded-t-lg border-primary dark:border-b-darkmode-primary bg-gradient-to-t from-white via-white dark:from-darkmode-theme-dark dark:via-darkmode-theme-dark to-transparent ; 
+}
+
 .nav-dropdown {
   @apply mr-0;
 }
