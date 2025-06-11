@@ -31,7 +31,13 @@ const { banner, features }: Homepage = homepage.data;
     <div class="container">
       <div class="row justify-center">
         <div class="text-center col-8 sm:col-6 md:col-5 lg:col-4 xl:col-3">
-          <img src="/images/logo.png" alt={site.logo_alt}>
+          <ImageMod 
+            src={site.logo}
+            alt={site.logo_alt}
+            loading={"eager"}
+            height={390}
+            width={390}
+          />
         </div>
       </div>
     </div>
