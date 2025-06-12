@@ -22,6 +22,10 @@ const { title, description, meta_title, image } = contact.data;
         <div class="mx-auto md:col-10 lg:col-6">
           <form action={contact_form_action} method="POST">
             <div class="mb-6">
+              <input type="hidden" name="access_key" value="849b9409-b65b-4524-8ccc-084d05bbb148">
+              <input type="hidden" name="subject" value="Cyflwyno Ffurflen Gyswllt Newydd">
+              <input type="hidden" name="from_name" value="Gwefan Gwaith Saer a Chrefftau i Bawb">
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
               <label for="name" class="form-label">
                 Enw Llawn <span class="text-red-500">*</span>
               </label>
