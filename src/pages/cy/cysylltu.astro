@@ -3,6 +3,7 @@ import config from "@/config/config.json";
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import { getEntry } from "astro:content";
+import HCaptcha from "@/components/HCaptcha.astro";
 
 const contact = await getEntry("contact", "-index-cy");
 const { contact_form_action }: { contact_form_action: string } = config.params;
@@ -61,11 +62,7 @@ const { title, description, meta_title, image } = contact.data;
                 rows="8"
               ></textarea>
             </div>
-            <div id="hcaptcha-container" class="h-captcha mb-6" 
-                  data-captcha="true" 
-                  data-lang="cy" 
-                  data-theme="light"
-            ></div>
+            <HCaptcha />
             <button type="submit" class="btn btn-primary">Anfon</button>
           </form>
         </div>
@@ -73,55 +70,3 @@ const { title, description, meta_title, image } = contact.data;
     </div>
   </section>
 </Base>
-<script src="https://web3forms.com/client/script.js" async defer></script>
-<script is:inline>
-  function getTheme() {
-    return document.documentElement.classList.contains("dark") ? "dark" : "light";
-  }
-
-  function renderHCaptcha(theme) {
-    const container = document.getElementById("hcaptcha-container");
-    if (!container || typeof hcaptcha === "undefined") return;
-
-    container.innerHTML = ""; // clear previous instance if any
-
-    hcaptcha.render("hcaptcha-container", {
-      sitekey: "50b2fe65-b00b-4b9e-ad62-3ba471098be2",
-      theme: theme,
-      language: "cy",
-    });
-  }
-
-  function attachThemeToggleListeners() {
-    const switches = document.querySelectorAll("[data-theme-switcher]");
-
-    if (!window._themeSwitcherListeners) {
-      window._themeSwitcherListeners = new WeakSet();
-    }
-
-    switches.forEach((sw) => {
-      if (!window._themeSwitcherListeners.has(sw)) {
-        sw.addEventListener("click", () => {
-          setTimeout(() => renderHCaptcha(getTheme()), 150);
-        });
-        window._themeSwitcherListeners.add(sw);
-      }
-    });
-  }
-
-  function setupCaptchaAndListeners() {
-    renderHCaptcha(getTheme());
-    attachThemeToggleListeners();
-  }
-
-  function waitForHCaptcha() {
-    if (typeof hcaptcha !== "undefined") {
-      setupCaptchaAndListeners();
-    } else {
-      setTimeout(waitForHCaptcha, 100);
-    }
-  }
-
-  document.addEventListener("DOMContentLoaded", waitForHCaptcha);
-  document.addEventListener("astro:after-swap", setupCaptchaAndListeners);
-</script>

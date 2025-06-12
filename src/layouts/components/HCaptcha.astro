@@ -1,0 +1,83 @@
+---
+const sitekey = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+const lang = Astro.url.pathname.startsWith("/cy") ? "cy" : "en";
+const theme = "dark";
+---
+
+<div id="captcha-container">
+  <div id="hcaptcha" class="mb-6"></div>
+</div>
+
+<script type="module">
+    const sitekey = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
+    const theme = "dark";
+
+    function loadScriptForLang(lang) {
+    console.log("🌍 loadScriptForLang with lang:", lang);
+
+    // Remove old script
+    const oldScript = document.querySelector('script[src^="https://js.hcaptcha.com/1/api.js"]');
+    if (oldScript) {
+        oldScript.remove();
+        console.log("🧹 Removed old hCaptcha script.");
+    }
+
+    // Remove old hCaptcha from memory
+    if (window.hcaptcha) {
+        delete window.hcaptcha;
+        console.log("🧼 Removed cached hCaptcha object.");
+    }
+
+    // Replace hCaptcha div
+    const container = document.getElementById("captcha-container");
+    const oldCaptcha = document.getElementById("hcaptcha");
+    if (oldCaptcha) oldCaptcha.remove();
+    console.log("🧹 Removed old hCaptcha div.");
+
+    const newCaptcha = document.createElement("div");
+    newCaptcha.id = "hcaptcha";
+    newCaptcha.className = "mb-6";
+    container.appendChild(newCaptcha);
+    console.log("📦 Appended new hCaptcha div:", newCaptcha);
+
+    // Define global onload callback
+    window.hcaptchaOnLoad = () => {
+        if (window.hcaptcha) {
+        console.log("✅ hCaptcha loaded, now rendering.");
+        window.hcaptcha.render(newCaptcha, {
+            sitekey,
+            theme,
+            language: lang, // you can also use `hl`, but this is more explicit
+        });
+        } else {
+        console.log("❌ hCaptcha not ready during hcaptchaOnLoad.");
+        }
+    };
+
+    // Add the new script with explicit render and onload callback
+    const script = document.createElement("script");
+    script.src = `https://js.hcaptcha.com/1/api.js?render=explicit&recaptchacompat=off&onload=hcaptchaOnLoad&hl=${lang}`;
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    console.log("📦 Appended hCaptcha script for lang:", lang);
+    }
+
+    // Initial render
+    const container = document.getElementById("hcaptcha");
+    if (container) {
+    const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
+    loadScriptForLang(lang);
+    }
+
+    document.addEventListener("astro:after-swap", () => {
+    const container = document.getElementById("hcaptcha");
+    if (!container) {
+        console.log("🚫 Not on contact page. Skipping hCaptcha.");
+        return;
+    }
+
+    const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
+    loadScriptForLang(lang);
+    });
+</script>
