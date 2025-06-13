@@ -28,8 +28,10 @@ const { main }: { main: NavigationLink[] } = menu[lang];
 <header class={`header z-30 ${settings.sticky_header && "sticky top-0"}`}>
   <nav class="navbar container">
     <!-- logo -->
-    <div class="order-0">
+    <div class="order-0 fixed top-1">
       <Logo />
+    </div>
+    <div class="">
     </div>
     <!-- navbar toggler -->
     <input id="nav-toggle" type="checkbox" class="hidden" />
