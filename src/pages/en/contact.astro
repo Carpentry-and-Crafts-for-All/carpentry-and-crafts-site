@@ -21,7 +21,7 @@ const { title, description, meta_title, image } = contact.data;
     <div class="container">
       <div class="row">
         <div class="mx-auto md:col-10 lg:col-6">
-          <form action={contact_form_action} method="POST">
+          <form action={contact_form_action} method="POST" id="site-contact-form">
             <div class="mb-6">
               <input type="hidden" name="access_key" value="849b9409-b65b-4524-8ccc-084d05bbb148">
               <input type="hidden" name="from_name" value="Carpentry and Crafts For All Website">
@@ -35,7 +35,9 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="John Doe"
                 type="text"
+                required
               />
+              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please enter your name.</p>
             </div>
             <div class="mb-6">
               <label for="email" class="form-label">
@@ -47,7 +49,9 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="john.doe@email.com"
                 type="email"
+                required
               />
+              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please enter your email address.</p>
             </div>
             <div class="mb-6">
               <label for="subject" class="form-label">
@@ -57,11 +61,13 @@ const { title, description, meta_title, image } = contact.data;
                 id="subject"
                 name="subject"
                 class="form-input"
+                required
               >
-              <option value="General Enquiry">General Enquiry</option>
-              <option value="Course Enquiry">Course Enquiry</option>
-              <option value="Press / Media Enquiry">Press / Media Enquiry</option>
+                <option value="General Enquiry">General Enquiry</option>
+                <option value="Course Enquiry">Course Enquiry</option>
+                <option value="Press / Media Enquiry">Press / Media Enquiry</option>
               </select>
+              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please select a subject line.</p>
             </div>
             <div class="mb-6">
               <label for="message" class="form-label">
@@ -72,7 +78,10 @@ const { title, description, meta_title, image } = contact.data;
                 name="message"
                 class="form-input"
                 placeholder="Message goes here..."
-                rows="8"></textarea>
+                rows="8"
+                required
+              ></textarea>
+              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please enter your message.</p>
             </div>
             <HCaptcha />
             <button type="submit" class="btn btn-primary">Submit</button>

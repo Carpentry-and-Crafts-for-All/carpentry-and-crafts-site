@@ -6,6 +6,7 @@ const theme = "dark";
 
 <div id="captcha-container">
   <div id="hcaptcha" class="mb-6"></div>
+  <p id="captcha-error" class="text-red-600 text-sm hidden" role="alert">Please complete the captcha before submitting.</p>
 </div>
 
 <script type="module">
@@ -123,4 +124,65 @@ const theme = "dark";
         }
     }
 
+    const form = document.getElementById("site-contact-form");
+
+    form?.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        // Validate hCaptcha
+        const captchaResponse = form.querySelector('textarea[name="h-captcha-response"]').value;
+        const captchaError = document.getElementById("captcha-error");
+
+        if (!captchaResponse) {
+            e.preventDefault();
+            captchaError?.classList.remove("hidden");
+            document.getElementById("hcaptcha")?.scrollIntoView({ behavior: "smooth", block: "center" });
+            isValid = false;
+        } else {
+            captchaError?.classList.add("hidden");
+        }
+
+        // Validate required fields
+        const fields = [
+            { name: "name", message: "Please enter your name." },
+            { name: "email", message: "Please enter a valid email address." },
+            { name: "message", message: "Please enter your message." }
+        ];
+
+        fields.forEach(({ name, message }) => {
+            const input = form.querySelector(`[name="${name}"]`);
+            const errorEl = document.getElementById(`error-${name}`);
+            const value = input?.value.trim();
+
+            if (!value) {
+                e.preventDefault();
+                isValid = false;
+                if (errorEl) {
+                    errorEl.textContent = message;
+                    errorEl.classList.remove("hidden");
+                }
+            } else {
+                if (errorEl) errorEl.classList.add("hidden");
+            }
+        });
+
+        // Optionally scroll to first error
+        if (!isValid) {
+            const firstError = form.querySelector("p[role=alert]:not(.hidden)");
+            firstError?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        if (name === "email" && value && !isValidEmail(value)) {
+            e.preventDefault();
+            isValid = false;
+            if (errorEl) {
+                errorEl.textContent = "Please enter a valid email address.";
+                errorEl.classList.remove("hidden");
+            }
+        }
+    });
 </script>

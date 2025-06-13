@@ -35,6 +35,7 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="Siôn Dafydd"
                 type="text"
+                required
               />
             </div>
             <div class="mb-6">
@@ -47,6 +48,7 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="sion.dafydd@ebost.com"
                 type="email"
+                required
               />
             </div>
             <div class="mb-6">
@@ -57,6 +59,7 @@ const { title, description, meta_title, image } = contact.data;
                 id="subject"
                 name="subject"
                 class="form-input"
+                required
               >
               <option value="Ymholiad Cyffredinol">Ymholiad Cyffredinol</option>
               <option value="Ymholiad Cwrs">Ymholiad Cwrs</option>
@@ -73,6 +76,7 @@ const { title, description, meta_title, image } = contact.data;
                 class="form-input"
                 placeholder="Rhowch eich neges yma..."
                 rows="8"
+                required
               ></textarea>
             </div>
             <HCaptcha />
