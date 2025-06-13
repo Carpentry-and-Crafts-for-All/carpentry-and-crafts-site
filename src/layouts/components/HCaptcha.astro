@@ -87,6 +87,8 @@ const theme = "dark";
         loadScriptForLangAndTheme(lang, theme);
     }
 
+    bindThemeToggleListener();
+
     document.addEventListener("astro:after-swap", () => {
         const container = document.getElementById("hcaptcha");
         if (!container) {
@@ -94,23 +96,31 @@ const theme = "dark";
             return;
         }
         const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
+        const theme = getCurrentTheme();
         loadScriptForLangAndTheme(lang, theme);
+        bindThemeToggleListener();
     });
 
-    if (themeToggle) {
-    themeToggle.addEventListener("change", ()=> {
-            const container = document.getElementById("hcaptcha");
-            if (!container) {
-                console.log("🚫 theme-change received, but hcaptcha not found.");
-                return;
-            }
+    function bindThemeToggleListener() {
+        const themeToggle = document.querySelector('[data-theme-switcher]');
+        if (themeToggle) {
+            console.log("🔗 Binding theme toggle listener.");
+            themeToggle.addEventListener("change", () => {
+                const container = document.getElementById("hcaptcha");
+                if (!container) {
+                    console.log("🚫 theme-change received, but hcaptcha not found.");
+                    return;
+                }
 
-            const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
-            const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+                const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
+                const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
 
-            console.log("🎨 Theme changed – reloading HCaptcha", theme);
-            loadScriptForLangAndTheme(lang, theme);
-        });
+                console.log("🎨 Theme changed – reloading HCaptcha", theme);
+                loadScriptForLangAndTheme(lang, theme);
+            });
+        } else {
+            console.log("❌ Theme toggle not found.");
+        }
     }
 
 </script>
