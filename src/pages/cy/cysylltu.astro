@@ -24,7 +24,6 @@ const { title, description, meta_title, image } = contact.data;
           <form action={contact_form_action} method="POST">
             <div class="mb-6">
               <input type="hidden" name="access_key" value="849b9409-b65b-4524-8ccc-084d05bbb148">
-              <input type="hidden" name="subject" value="Cyflwyno Ffurflen Gyswllt Newydd">
               <input type="hidden" name="from_name" value="Gwefan Gwaith Saer a Chrefftau i Bawb">
               <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
               <label for="name" class="form-label">
@@ -49,6 +48,20 @@ const { title, description, meta_title, image } = contact.data;
                 placeholder="sion.dafydd@ebost.com"
                 type="email"
               />
+            </div>
+            <div class="mb-6">
+              <label for="subject" class="form-label">
+                Subject <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="subject"
+                name="subject"
+                class="form-input"
+              >
+              <option value="Ymholiad Cyffredinol">Ymholiad Cyffredinol</option>
+              <option value="Ymholiad Cwrs">Ymholiad Cwrs</option>
+              <option value="Ymholiad y Wasg / Cyfryngau">Ymholiad y Wasg / Cyfryngau</option>
+              </select>
             </div>
             <div class="mb-6">
               <label for="message" class="form-label">
