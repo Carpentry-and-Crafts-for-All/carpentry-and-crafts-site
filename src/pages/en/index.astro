@@ -48,7 +48,7 @@ const { banner, features }: Homepage = homepage.data;
       <div class="row justify-center">
         <div class="mb-2 text-center lg:col-7">
           <h1 set:html={markdownify(banner.title)} class="mb-4" />
-          <p set:html={markdownify(banner.content)} class="mb-8" />
+          <p set:html={markdownify(banner.content)} class="mb-8 text-lg" />
           {
             banner.button.enable && (
               <a class="btn btn-primary" href={banner.button.link}>
