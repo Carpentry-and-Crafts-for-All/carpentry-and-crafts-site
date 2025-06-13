@@ -2,14 +2,14 @@
   "en": {
     "main": [
       { "name": "Home", "url": "/en" },
-      { "name": "Contact", "url": "/en/contact" },
+      { "name": "Get in Touch", "url": "/en/contact" },
       { "name": "Gallery", "url": "/en/gallery" }
     ]
   },
   "cy": {
     "main": [
       { "name": "Hafan", "url": "/cy" },
-      { "name": "Cysylltu", "url": "/cy/cysylltu" },
+      { "name": "Cysylltwch", "url": "/cy/cysylltu" },
       { "name": "Oriel", "url": "/cy/oriel" }
     ]
   },
