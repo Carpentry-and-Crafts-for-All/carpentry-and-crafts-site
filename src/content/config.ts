@@ -46,6 +46,22 @@ const pagesCollection = defineCollection({
     description: z.string().optional(),
     image: z.string().optional(),
     draft: z.boolean().optional(),
+    textiles: z
+      .array(
+        z.object({
+          image: z.string(),
+          alt: z.string(),
+        })
+      )
+      .optional(),
+    woodwork: z
+      .array(
+        z.object({
+          image: z.string(),
+          alt: z.string(),
+        })
+      )
+      .optional(),
   }),
 });
 

@@ -5,9 +5,9 @@ import PageHeader from "@/partials/PageHeader.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntry } from "astro:content";
 
-const about = await getEntry("pages", "gallery");
-const { Content } = await about.render();
-const { title, description, meta_title, image } = about.data;
+const gallery = await getEntry("pages", "gallery");
+const { Content } = await gallery.render();
+const { title, description, meta_title, image, textiles, woodwork } = gallery.data;
 ---
 
 <Base
@@ -34,10 +34,112 @@ const { title, description, meta_title, image } = about.data;
             )
           }
           <div class="content">
-            <Content />
+            <div class="row">
+              <div class="mx-auto text-center md:col-10 lg:col-8 xl:col-6">
+                <h2>Textile Crafts</h2>
+              </div>
+              <div class="col-12">
+                <div class="swiper testimonial-slider">
+                  <div class="swiper-wrapper">
+                    {(textiles ?? []).map(
+                      (item: {
+                        image: string;
+                        alt: string;
+                      }) => (
+                        <div class="swiper-slide">
+                          <div class="rounded-lg bg-theme-light p-3 dark:bg-darkmode-theme-light">
+                            <div class="flex justify-items-center">
+                              <div class="text-dark dark:text-white">
+                                <ImageMod
+                                  height={800}
+                                  width={800}
+                                  class="rounded-md m-0"
+                                  src={item.image}
+                                  alt={item.alt}
+                                  format="webp"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                  <div class="testimonial-slider-pagination mt-9 flex items-center justify-center text-center" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mx-auto text-center md:col-10 lg:col-8 xl:col-6">
+                <h2>Woodwork</h2>
+              </div>
+              <div class="col-12">
+                <div class="swiper testimonial-slider">
+                  <div class="swiper-wrapper">
+                    {(woodwork ?? []).map(
+                      (item: {
+                        image: string;
+                        alt: string;
+                      }) => (
+                        <div class="swiper-slide">
+                          <div class="rounded-lg bg-theme-light p-3 dark:bg-darkmode-theme-light">
+                            <div class="flex justify-items-center">
+                              <div class="text-dark dark:text-white">
+                                <ImageMod
+                                  height={800}
+                                  width={800}
+                                  class="rounded-md m-0"
+                                  src={item.image}
+                                  alt={item.alt}
+                                  format="webp"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                  <div class="testimonial-slider-pagination mt-9 flex items-center justify-center text-center" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </Base>
+<script>
+  import { Swiper } from "swiper";
+  import "swiper/css";
+  import "swiper/css/pagination";
+  import { Autoplay, Pagination } from "swiper/modules";
+
+  // astro:page-load event is fired when the page is loaded
+  document.addEventListener("astro:page-load", () => {
+    new Swiper(".testimonial-slider", {
+      modules: [Pagination, Autoplay],
+      spaceBetween: 24,
+      loop: true,
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".testimonial-slider-pagination",
+        type: "bullets",
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+      },
+    });
+  });
+</script>
