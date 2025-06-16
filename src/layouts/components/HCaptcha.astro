@@ -67,7 +67,11 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
             currentCaptchaId = window.hcaptcha.render(newCaptcha, {
                 sitekey,
                 theme: theme,
-                language: lang, // you can also use `hl`, but this is more explicit
+                language: lang,
+                callback: function (token) {
+                    const captchaError = document.getElementById("captcha-error");
+                    if (captchaError) captchaError.classList.add("hidden");
+                }
             });
             } else {
                 console.log("❌ hCaptcha not ready during hcaptchaOnLoad.");
