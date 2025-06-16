@@ -37,7 +37,6 @@ const { title, description, meta_title, image } = contact.data;
                 type="text"
                 required
               />
-              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please enter your name.</p>
             </div>
             <div class="mb-6">
               <label for="email" class="form-label">
@@ -51,7 +50,6 @@ const { title, description, meta_title, image } = contact.data;
                 type="email"
                 required
               />
-              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please enter your email address.</p>
             </div>
             <div class="mb-6">
               <label for="subject" class="form-label">
@@ -67,7 +65,6 @@ const { title, description, meta_title, image } = contact.data;
                 <option value="Course Enquiry">Course Enquiry</option>
                 <option value="Press / Media Enquiry">Press / Media Enquiry</option>
               </select>
-              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please select a subject line.</p>
             </div>
             <div class="mb-6">
               <label for="message" class="form-label">
@@ -81,7 +78,6 @@ const { title, description, meta_title, image } = contact.data;
                 rows="8"
                 required
               ></textarea>
-              <p class="text-red-600 text-sm hidden" id="error-name" role="alert">Please enter your message.</p>
             </div>
             <HCaptcha />
             <button type="submit" class="btn btn-primary mt-6">Submit</button>
