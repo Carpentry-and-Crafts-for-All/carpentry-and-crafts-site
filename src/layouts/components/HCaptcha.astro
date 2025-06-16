@@ -5,9 +5,9 @@ const theme = "dark";
 ---
 
 <div id="captcha-container">
-  <div id="hcaptcha" class="mb-6"></div>
-  <p id="captcha-error" class="text-red-600 text-sm hidden" role="alert">Please complete the captcha before submitting.</p>
+  <div id="hcaptcha"></div>
 </div>
+<p id="captcha-error" class="text-red-600 text-sm hidden" role="alert">Please complete the captcha before submitting.</p>
 
 <script type="module">
     const sitekey = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
@@ -44,7 +44,6 @@ const theme = "dark";
 
         const newCaptcha = document.createElement("div");
         newCaptcha.id = "hcaptcha";
-        newCaptcha.className = "mb-6";
         container.appendChild(newCaptcha);
         console.log("📦 Appended new hCaptcha div:", newCaptcha);
 
