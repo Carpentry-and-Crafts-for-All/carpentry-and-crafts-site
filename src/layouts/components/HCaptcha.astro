@@ -99,6 +99,7 @@ const theme = "dark";
         const theme = getCurrentTheme();
         loadScriptForLangAndTheme(lang, theme);
         bindThemeToggleListener();
+        addValidationListener();
     });
 
     function bindThemeToggleListener() {
@@ -125,21 +126,26 @@ const theme = "dark";
 
     const form = document.getElementById("site-contact-form");
 
-    form?.addEventListener("submit", function (e) {
-        let isValid = true;
+    function addValidationListener(){
+        form?.addEventListener("submit", function (e) {
+            let isValid = true;
 
-        // Validate hCaptcha
-        const captchaResponse = form.querySelector('textarea[name="h-captcha-response"]').value;
-        const captchaError = document.getElementById("captcha-error");
+            // Validate hCaptcha
+            const captchaResponse = form.querySelector('textarea[name="h-captcha-response"]').value;
+            const captchaError = document.getElementById("captcha-error");
 
-        if (!captchaResponse) {
-            e.preventDefault();
-            captchaError?.classList.remove("hidden");
-            document.getElementById("hcaptcha")?.scrollIntoView({ behavior: "smooth", block: "center" });
-            isValid = false;
-        } else {
-            captchaError?.classList.add("hidden");
-        }
+            if (!captchaResponse) {
+                e.preventDefault();
+                captchaError?.classList.remove("hidden");
+                document.getElementById("hcaptcha")?.scrollIntoView({ behavior: "smooth", block: "center" });
+                isValid = false;
+            } else {
+                captchaError?.classList.add("hidden");
+            }
 
-    });
+        });
+    }
+
+    addValidationListener();
+        
 </script>
