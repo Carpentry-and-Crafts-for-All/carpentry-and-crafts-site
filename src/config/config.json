@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Carpentry and Crafts for All",
-    "base_url": "https://carpentry-and-crafts-site.pages.dev",
+    "base_url": "https://carpentryandcrafts.org.uk",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -44,8 +44,16 @@
   },
 
   "metadata": {
-    "meta_author": "Carpentry and Crafts for All",
     "meta_image": "/images/logo-social-share.png",
-    "meta_description": "We’re a charity offering carpentry and craft workshops to help people gain practical skills, boost their confidence, and connect with others in a supportive space."
+    "en": {
+      "meta_title": "Carpentry and Crafts for All | Hands-on Workshops to Build Skills & Confidence",
+      "meta_description": "Join our supportive community to learn carpentry and crafts, gain practical skills, and boost confidence through creative workshops.",
+      "meta_author": "Carpentry and Crafts for All"
+    },
+    "cy": {
+      "meta_title": "Gwaith Saer a Chrefftau i Bawb | Gweithdai Ymarferol i Ddatblygu Sgiliau a Hyder",
+      "meta_description": "Ymunwch â'n cymuned gefnogol i ddysgu gwaith saer a chrefftau, datblygu sgiliau ymarferol, a meithrin hyder drwy weithdai creadigol.",
+      "meta_author": "Gwaith Saer a Chrefftau i Bawb"
+    }
   }
 }

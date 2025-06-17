@@ -13,7 +13,7 @@ import "@fontsource-variable/signika";
 import "@fontsource-variable/heebo";
 import AnimateOnScroll from "@/components/AnimateOnScroll.astro";
 // Page language utility
-import { getHtmlLangAttribute } from "@/lib/utils/lang";
+import { getHtmlLangAttribute, getLangFromPath } from "@/lib/utils/lang";
 
 // types for frontmatters
 export interface Props {
@@ -31,6 +31,16 @@ const { title, meta_title, description, image, noindex, canonical } =
 
 // consts for page language
 const htmlLang = getHtmlLangAttribute(Astro.url.pathname);
+
+const lang = getLangFromPath(Astro.url.pathname);
+const isHomepage = Astro.url.pathname === "/en" || Astro.url.pathname === "/cy";
+
+// Use localised metadata only for the homepage
+const homepageTitle = isHomepage ? config.metadata[lang]?.meta_title : (meta_title ? meta_title : title ? title : config.site.title);
+const homepageDescription = isHomepage ? config.metadata[lang]?.meta_description : description;
+// Use localised metadata for author
+const metaAuthor = config.metadata[lang]?.meta_author || config.metadata.en.meta_author;
+
 ---
 
 <!doctype html>
@@ -62,7 +72,7 @@ const htmlLang = getHtmlLangAttribute(Astro.url.pathname);
 
     <!-- title -->
     <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
+      {homepageTitle}
     </title>
 
     <!-- canonical url -->
@@ -74,30 +84,24 @@ const htmlLang = getHtmlLangAttribute(Astro.url.pathname);
     <!-- meta-description -->
     <meta
       name="description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
+      content={homepageDescription}
     />
 
     <ViewTransitions />
 
     <!-- author from config.json -->
-    <meta name="author" content={config.metadata.meta_author} />
+    <meta name="author" content={metaAuthor} />
 
     <!-- og-title -->
     <meta
       property="og:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
+      content={homepageTitle}
     />
 
     <!-- og-description -->
     <meta
       property="og:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
+      content={homepageDescription}
     />
     <meta property="og:type" content="website" />
     <meta
@@ -108,17 +112,13 @@ const htmlLang = getHtmlLangAttribute(Astro.url.pathname);
     <!-- twitter-title -->
     <meta
       name="twitter:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
+      content={homepageTitle}
     />
 
     <!-- twitter-description -->
     <meta
       name="twitter:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
+      content={homepageDescription}
     />
 
     <!-- og-image -->
