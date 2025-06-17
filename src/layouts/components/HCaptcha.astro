@@ -1,7 +1,6 @@
 ---
 const sitekey = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
 const lang = Astro.url.pathname.startsWith("/cy") ? "cy" : "en";
-const theme = "dark";
 const hCaptchaWarnEng = "Please complete the captcha before submitting.";
 const hCaprchaWarnCym = "Cwblhewch y captcha cyn cyflwyno.";
 const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
@@ -19,7 +18,7 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
     let currentCaptchaId = null;
 
     function getCurrentTheme() {
-        return localStorage.getItem("theme") === "light" ? "light" : "dark";
+        return localStorage.getItem("theme") === "dark" ? "dark" : "light";
     }
 
     function loadScriptForLangAndTheme(lang, theme) {
