@@ -1,8 +1,10 @@
 ---
 import Base from "@/layouts/Base.astro";
+import { getLangFromPath } from "@/lib/utils/lang";
+const lang = getLangFromPath(Astro.url.pathname);
 ---
 
-<Base title="Page Not Found">
+<Base title={lang === "cy" ? "Heb Ganfod Y Dudalen" : "Page Not Found"}>
   <section class="section-sm text-center">
     <div class="container">
       <div class="row justify-center">
@@ -12,14 +14,25 @@ import Base from "@/layouts/Base.astro";
           >
             404
           </span>
-          <h1 class="h2 mb-4">Page not found</h1>
+          <h1 class="h2 mb-4">
+            {lang === "cy"
+              ? "Heb ganfod y dudalen" 
+              : "Page not found"}
+          </h1>
           <div class="content">
             <p>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
+              {lang === "cy" 
+                ? "Efallai bod y dudalen rydych chi'n chwilio amdani wedi'i dileu, bod ei henw wedi newid, neu nad yw ar gael dros dro." 
+                : "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+              }
             </p>
           </div>
-          <a href="/" class="btn btn-primary mt-8">Back to home</a>
+          <a href="/" class="btn btn-primary mt-8 normal-case">
+            {lang === "cy" 
+              ? "Yn ôl i'r Hafan" 
+              : "Back To Home"
+            }
+          </a>
         </div>
       </div>
     </div>
