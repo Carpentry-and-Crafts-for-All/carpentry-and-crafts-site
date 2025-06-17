@@ -1,0 +1,42 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+const { mapped_address } = Astro.props;
+---
+
+{
+  mapped_address.data.enable && (
+    <section class="mb-8">
+      <div class="container">
+        <div class="rounded-xl bg-theme-light px-4 py-4 md:p-8 lg:p-12 dark:bg-darkmode-theme-light xl:p-20">
+          <div class="row items-center justify-between">
+            <div class="mb-10 col-12 md:col-8 lg:col-9 md:order-2 md:mb-0">
+              <iframe class="google-map" title={mapped_address.data.title} class="w-full h-full" src={mapped_address.data.g_map_src}
+                style="border:0;"
+                allowfullscreen="" 
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="col-12 md:col-4 lg:col-3 md:order-1">
+              
+              <address>
+              <h3
+                set:html={markdownify(mapped_address.data.address_1)}
+                class="mb-4"
+              />
+              <p class="mb-6 text-lg">
+                {mapped_address.data.address_2}<br>
+                {mapped_address.data.address_3}<br>
+                {mapped_address.data.address_4}<br>
+                {mapped_address.data.address_5}<br>
+                {mapped_address.data.address_6}<br>
+              </p>
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

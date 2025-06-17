@@ -4,10 +4,12 @@ import Base from "@/layouts/Base.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import { getEntry } from "astro:content";
 import HCaptcha from "@/components/HCaptcha.astro";
+import MappedAddress from "@/partials/MappedAddress.astro";
 
 const contact = await getEntry("contact", "-index");
 const { contact_form_action }: { contact_form_action: string } = config.params;
 const { title, description, meta_title, image } = contact.data;
+const mapped_address = await getEntry("sections", "mapped-address");
 ---
 
 <Base
@@ -86,4 +88,5 @@ const { title, description, meta_title, image } = contact.data;
       </div>
     </div>
   </section>
+  <MappedAddress mapped_address={mapped_address} />
 </Base>
