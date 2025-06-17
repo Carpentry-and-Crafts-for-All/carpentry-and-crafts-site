@@ -1,4 +1,9 @@
 ---
+import config from "@/config/config.json";
+if (!config.site.enable_extra_pages) {
+  return new Response(null, { status: 404 });
+}
+
 import Base from "@/layouts/Base.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { humanize } from "@/lib/utils/textConverter";

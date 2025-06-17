@@ -1,4 +1,9 @@
 ---
+import config from "@/config/config.json";
+if (!config.site.enable_extra_pages) {
+  return new Response(null, { status: 404 });
+}
+
 import BlogCard from "@/components/BlogCard.astro";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";

@@ -2,6 +2,9 @@
 import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
 import config from "@/config/config.json";
+if (!config.site.enable_extra_pages) {
+  return new Response(null, { status: 404 });
+}
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
@@ -9,6 +12,7 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
 import PostSidebar from "@/partials/PostSidebar.astro";
 import { getEntry } from "astro:content";
+
 
 const BLOG_FOLDER = "blog";
 

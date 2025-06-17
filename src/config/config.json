@@ -12,7 +12,8 @@
     "logo_text": "Carpentry and Crafts for All",
     "logo_alt_home_link": "Home",
     "logo_alt_home_link_cy": "Hafan",
-    "logo_alt": "Gwaith Saer a Chrefftau i Bawb C.C.F.A. Carpentry and Crafts for All"
+    "logo_alt": "Gwaith Saer a Chrefftau i Bawb C.C.F.A. Carpentry and Crafts for All",
+    "enable_extra_pages": false
   },
 
   "settings": {
