@@ -22,32 +22,27 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
     }
 
     function loadScriptForLangAndTheme(lang, theme) {
-        console.log("🌍 loadScriptForLangAndTheme with lang:", lang, "and theme:", theme);
 
         // Remove old script
         const oldScript = document.querySelector('script[src^="https://js.hcaptcha.com/1/api.js"]');
         if (oldScript) {
             oldScript.remove();
-            console.log("🧹 Removed old hCaptcha script.");
         }
 
         // Remove old hCaptcha from memory
         if (window.hcaptcha) {
             delete window.hcaptcha;
             currentCaptchaId = null
-            console.log("🧼 Removed cached hCaptcha object.");
         }
 
         // Replace hCaptcha div
         const container = document.getElementById("captcha-container");
         const oldCaptcha = document.getElementById("hcaptcha");
         if (oldCaptcha) oldCaptcha.remove();
-        console.log("🧹 Removed old hCaptcha div.");
 
         const newCaptcha = document.createElement("div");
         newCaptcha.id = "hcaptcha";
         container.appendChild(newCaptcha);
-        console.log("📦 Appended new hCaptcha div:", newCaptcha);
 
         // Define global onload callback
         window.hcaptchaOnLoad = () => {
@@ -58,11 +53,9 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
                 return;
             }
             if (currentCaptchaId !== null) {
-                console.log("🔁 hCaptcha already rendered, skipping.");
                 return;
             }
             if (window.hcaptcha) {
-            console.log("✅ hCaptcha loaded, now rendering.");
             currentCaptchaId = window.hcaptcha.render(newCaptcha, {
                 sitekey,
                 theme: theme,
@@ -72,8 +65,6 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
                     if (captchaError) captchaError.classList.add("hidden");
                 }
             });
-            } else {
-                console.log("❌ hCaptcha not ready during hcaptchaOnLoad.");
             }
         };
 
@@ -83,7 +74,6 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
         script.async = true;
         script.defer = true;
         document.body.appendChild(script);
-        console.log("📦 Appended hCaptcha script for lang:", lang);
     }
 
     // Initial render
@@ -98,7 +88,6 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
     document.addEventListener("astro:after-swap", () => {
         const container = document.getElementById("hcaptcha");
         if (!container) {
-            console.log("🚫 Not on contact page. Skipping hCaptcha.");
             return;
         }
         const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
@@ -111,22 +100,17 @@ const hCaptchaWarn = lang !='cy' ? hCaptchaWarnEng : hCaprchaWarnCym;
     function bindThemeToggleListener() {
         const themeToggle = document.querySelector('[data-theme-switcher]');
         if (themeToggle) {
-            console.log("🔗 Binding theme toggle listener.");
             themeToggle.addEventListener("change", () => {
                 const container = document.getElementById("hcaptcha");
                 if (!container) {
-                    console.log("🚫 theme-change received, but hcaptcha not found.");
                     return;
                 }
 
                 const lang = location.pathname.startsWith("/cy") ? "cy" : "en";
                 const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
 
-                console.log("🎨 Theme changed – reloading HCaptcha", theme);
                 loadScriptForLangAndTheme(lang, theme);
             });
-        } else {
-            console.log("❌ Theme toggle not found.");
         }
     }
 
