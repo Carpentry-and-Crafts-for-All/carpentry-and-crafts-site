@@ -1,0 +1,113 @@
+---
+import CloseButton from "./CloseButton.astro";
+const { imageURL, description, id } = Astro.props;
+
+
+
+---
+<pop-up
+  role="dialog"
+  id={id}
+  aria-modal="false"
+  aria-label={description}
+  class="IHNA-popup hidden w-screen h-screen backdrop-blur-sm bg-opacity-50 bg-gray-500 top-0 left-0 z-[9999] fixed"
+>
+  <div
+    class="popup-content w-11/12 bg-theme-light dark:bg-darkmode-theme-light -translate-y-1/2 top-1/2 rounded-lg -translate-x-1/2 left-1/2 absolute isolate p-2 max-w-4xl"
+  >
+    <CloseButton customClass="popclose absolute right-3 top-3 left-auto z-10" />
+    <div id="modal-img-wrapper" class="w-full h-auto max-h-[75vh] ">
+      <!-- Image will be inserted here dynamically -->
+    </div>
+  </div>
+</pop-up>
+
+<script>
+  class PopUp extends HTMLElement {
+
+    popUpClose: HTMLButtonElement | null = null;
+    boundHandleOutsideClick: (e: MouseEvent) => void;
+    boundHandleEscapeKey: (e: KeyboardEvent) => void;
+    boundClosePop: () => void;
+
+    constructor() {
+      super();
+      // Bind the event handlers once and store them
+      this.boundHandleOutsideClick = this.handleOutsideClick.bind(this);
+      this.boundHandleEscapeKey = this.handleEscapeKey.bind(this);
+      this.boundClosePop = this.closePop.bind(this);
+    }
+
+    connectedCallback() {
+      
+      const button = this.shadowRoot
+        ? this.shadowRoot.querySelector(".popup-content > div > button")
+        : this.querySelector(":scope > .popup-content > div > button");
+
+      if (!(button instanceof HTMLButtonElement)) {
+        console.error("Close button not found or not a button");
+        return;
+      }
+
+      this.popUpClose = button;
+      if (this.popUpClose) {
+        this.popUpClose.addEventListener("click", this.boundClosePop);
+      }
+
+      // Add the event listeners using the bound handlers
+      this.addEventListener("click", this.boundHandleOutsideClick);
+      document.addEventListener("keydown", this.boundHandleEscapeKey);
+
+    }
+
+    disconnectedCallback() {
+      // Remove the event listeners using the bound handlers
+      if (this.popUpClose) {
+        this.popUpClose.removeEventListener("click", this.boundClosePop);
+      }
+      this.removeEventListener("click", this.boundHandleOutsideClick);
+      document.removeEventListener("keydown", this.boundHandleEscapeKey);
+      
+      // If you have other cleanup tasks, add them here
+    }
+
+    handleOutsideClick(e: MouseEvent) {
+      const content = this.querySelector(".popup-content");
+      if (content && !content.contains(e.target as Node)) {
+        this.closePop();
+      }
+    }
+
+    handleEscapeKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        this.closePop();
+      }
+    }
+
+    openPop() {
+      this.classList.remove("hidden");
+      this.classList.add("fade-in");
+      this.disableScroll();
+      this.setAttribute("aria-modal", "true");
+    }
+
+    closePop() {
+      this.classList.add("hidden");
+      this.classList.remove("fade-in");
+      this.enableScroll();
+      this.setAttribute("aria-modal", "false");
+    }
+
+    disableScroll() {
+      document.body.style.overflow = "hidden";
+    }
+
+    enableScroll() {
+      document.body.style.overflow = "";
+    }
+  }
+
+  if (!customElements.get("pop-up")) {
+    customElements.define("pop-up", PopUp);
+  }
+</script>

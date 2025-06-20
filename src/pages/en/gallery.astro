@@ -4,6 +4,7 @@ import Base from "@/layouts/Base.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntry } from "astro:content";
+import PopUp from "@/components/PopUp.astro";
 
 const gallery = await getEntry("pages", "gallery");
 const { Content } = await gallery.render();
@@ -49,7 +50,11 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
                         <div class="swiper-slide">
                           <div class="rounded-lg bg-theme-light p-3 dark:bg-darkmode-theme-light">
                             <div class="flex justify-items-center">
-                              <div class="text-dark dark:text-white">
+                              <div 
+                                class="text-dark dark:text-white cursor-pointer open-popup"
+                                data-img={item.image}
+                                data-alt={item.alt}
+                              >
                                 <ImageMod
                                   height={800}
                                   width={800}
@@ -84,11 +89,15 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
                         <div class="swiper-slide">
                           <div class="rounded-lg bg-theme-light p-3 dark:bg-darkmode-theme-light">
                             <div class="flex justify-items-center">
-                              <div class="text-dark dark:text-white">
+                              <div 
+                                class="text-dark dark:text-white cursor-pointer open-popup"
+                                data-img={item.image}
+                                data-alt={item.alt}
+                              >
                                 <ImageMod
                                   height={800}
                                   width={800}
-                                  class="rounded-md m-0"
+                                  class="rounded-md m-0 "
                                   src={item.image}
                                   alt={item.alt}
                                   format="webp"
@@ -109,6 +118,21 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
       </div>
     </div>
   </section>
+  <PopUp client:load id="gallery-modal" imageURL="" alt="" />
+  <div id="image-templates" class="hidden">
+    {(textiles ?? []).concat(woodwork ?? []).map((item) => (
+      <div data-src={item.image} data-alt={item.alt}>
+        <ImageMod
+          height={800}
+          width={800}
+          src={item.image}
+          alt={item.alt}
+          format="webp"
+          class="rounded-md max-h-[75vh] h-auto w-auto mx-auto"
+        />
+      </div>
+    ))}
+  </div>
 </Base>
 <script>
   import { Swiper } from "swiper";
@@ -116,8 +140,36 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
   import "swiper/css/pagination";
   import { Autoplay, Pagination } from "swiper/modules";
 
+  interface PopUpElement extends HTMLElement {
+    openPop: () => void;
+    closePop: () => void;
+  }
+
   // astro:page-load event is fired when the page is loaded
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("astro:page-load", async () => {
+    const modalEl = document.getElementById("gallery-modal");
+    if (!modalEl) return;
+    await customElements.whenDefined("pop-up");
+    const modal = modalEl as PopUpElement;
+    const modalImgWrapper = modal.querySelector("#modal-img-wrapper");
+    if (!modalImgWrapper) return;
+
+    document.querySelectorAll(".open-popup").forEach((el) => {
+      el.addEventListener("click", () => {
+        const src = el.getAttribute("data-img");
+        const template = document.querySelector(`#image-templates [data-src="${src}"]`);
+
+        if (!template || !template.firstElementChild) {
+          console.warn("No valid image template found for", src);
+          return;
+        }
+
+        modalImgWrapper.innerHTML = "";
+        modalImgWrapper.appendChild(template.firstElementChild.cloneNode(true));
+        modal.openPop(); // This is OK now due to the cast to `any`
+        });
+    });
+
     new Swiper(".testimonial-slider", {
       modules: [Pagination, Autoplay],
       spaceBetween: 24,
