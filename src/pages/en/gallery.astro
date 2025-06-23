@@ -120,7 +120,7 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
   </section>
   <PopUp id="gallery-modal" />
   <div id="image-templates" class="hidden">
-    {(textiles ?? []).concat(woodwork ?? []).map((item) => (
+    {(textiles ?? []).concat(woodwork ?? []).map((item: { image: string; alt: string; }) => (
       <div data-src={item.image} data-alt={item.alt}>
         <ImageMod
           height={800}
