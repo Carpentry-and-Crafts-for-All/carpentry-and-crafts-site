@@ -97,6 +97,7 @@ export default defineConfig({
   },
   redirects: {
     "/gallery": "/en/gallery",
+    "/gallery-cy": "/cy/oriel",
     "/oriel": "cy/oriel",
     "contact": "en/contact",
     "cysylltu": "cy/cysylltu",
