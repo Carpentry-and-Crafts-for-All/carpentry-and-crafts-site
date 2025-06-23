@@ -21,6 +21,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const excludePaths = [
+          "/gallery",
           "/gallery-cy",
           "/blog",
           "/blog/",
