@@ -18,7 +18,48 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const excludePaths = [
+          "/gallery-cy",
+          "/blog",
+          "/blog/",
+          "/blog/page",
+          "/blog/page/",
+          "/blog/page/1",
+          "/blog/page/2",
+          "/blog/page/3",
+          "/authors",
+          "/authors/",
+          "/categories",
+          "/categories/",
+          "/tags",
+          "/tags/",
+          "/blog/post-1",
+          "/blog/post-2",
+          "/blog/post-3",
+          "/blog/post-4",
+          "/authors/john-doe",
+          "/authors/sam-wilson",
+          "/authors/william-jacob",
+          "/categories/application",
+          "/categories/architecture",
+          "/categories/data",
+          "/categories/software",
+          "/categories/technology",
+          "/tags/nextjs",
+          "/tags/silicon",
+          "/tags/software",
+          "/tags/tailwind",
+          "/tags/technology",
+          "/about",
+          "/en/about",
+        ];
+        // Extract the path from full URL
+        const { pathname } = new URL(page);
+        return !excludePaths.includes(pathname);
+      },
+    }),
     tailwind({
       config: {
         applyBaseStyles: false,
