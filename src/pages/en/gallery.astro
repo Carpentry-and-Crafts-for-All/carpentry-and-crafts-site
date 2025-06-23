@@ -27,8 +27,8 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
               <ImageMod
                 class="mx-auto mb-6 rounded-lg"
                 src={image}
-                width={200}
-                height={200}
+                width={800}
+                height={800}
                 alt={title}
                 format="webp"
               />
@@ -118,7 +118,7 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
       </div>
     </div>
   </section>
-  <PopUp client:load id="gallery-modal" imageURL="" alt="" />
+  <PopUp id="gallery-modal" />
   <div id="image-templates" class="hidden">
     {(textiles ?? []).concat(woodwork ?? []).map((item) => (
       <div data-src={item.image} data-alt={item.alt}>

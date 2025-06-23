@@ -118,7 +118,7 @@ const { title, description, meta_title, image, textiles, woodwork } = gallery.da
       </div>
     </div>
   </section>
-  <PopUp client:load id="gallery-modal" imageURL="" alt="" />
+  <PopUp id="gallery-modal" />
   <div id="image-templates" class="hidden">
     {(textiles ?? []).concat(woodwork ?? []).map((item) => (
       <div data-src={item.image} data-alt={item.alt}>
