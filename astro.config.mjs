@@ -94,4 +94,18 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  redirects: {
+    "/gallery": "/en/gallery",
+    "/oriel": "cy/oriel",
+    "contact": "en/contact",
+    "cysylltu": "cy/cysylltu",
+    "cysylltwch": "cy/cysylltu",
+    "cy/cysylltwch": "cy/cysylltu",
+    "home": "/en",
+    "en/home": "/en",
+    "hafan": "/cy",
+    "cy/hafan": "/cy",
+    "thanks": "en/thanks",
+    "diolch": "cy/diolch",   
+  },
 });
