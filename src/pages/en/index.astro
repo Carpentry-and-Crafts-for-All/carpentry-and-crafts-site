@@ -66,7 +66,7 @@ const { banner, features }: Homepage = homepage.data;
   {
     features.map((feature, index: number) => (
       <section
-        class={`section-sm ${index % 2 === 0 && "bg-gradient"}`}
+        class={`section-sm ${index === 0 && "bg-gradient pb-0"}`}
         {...(index > 0 ? { "data-scroll-animate": "fadeInUp" } : {})}
       >
         <div class="container">
